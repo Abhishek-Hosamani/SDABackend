@@ -57,3 +57,9 @@ app.get('/category/:catname', async (req, res) => {
 app.get('/test', (req, res) => {
     res.send('hello');
 })
+
+app.get('/', async (req, res) => {
+    res.status(200).json({
+        message: "successfully Running"
+    })
+})

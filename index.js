@@ -46,8 +46,8 @@ app.post('/api/products', async (req, res) => {
     })
 });
 
-app.get('/category/:catname', async (req, res) => {
-    const { catname } = req.params
+app.get('/category', async (req, res) => {
+    // const { catname } = req.params
     // console.log(catname)
     const pr = await ProductData.find({ categoryName: `${catname}` });
 

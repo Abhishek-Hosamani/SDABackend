@@ -16,11 +16,10 @@ mongoose.connect(mongourl, { useNewUrlParser: true, useUnifiedTopology: true })
 
 app.use(cors());
 app.use(bodyParser.json({ limit: '16mb' }));
-require('./Datamodel')
-const ProductData = mongoose.model('ProductData');
+const ProductData = require("./Datamodel");
 app.use(express.json());
 
-app.listen(5000, () => {
+app.listen(9000, () => {
     console.log('Server is running on port 3000');
 });
 
@@ -46,11 +45,17 @@ app.post('/api/products', async (req, res) => {
     })
 });
 
-app.get('/category', async (req, res) => {
+app.get('/api/category', async (req, res) => {
     // const { catname } = req.params
     // console.log(catname)
-    const pr = await ProductData.find({ categoryName: 'TubelessTyre Values' });
-
+    console.log("Hello")
+    const pr = await ProductData.find({}).then((data) => {
+        console.log(data)
+    }).catch((err) => {
+        console.log(err)
+    });
+    console.log("Correct")
+    console.log(pr);
     res.json(pr);
 })
 
